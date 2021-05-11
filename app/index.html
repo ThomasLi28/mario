@@ -1,0 +1,172 @@
+<!doctype html>
+<html class="no-js" lang="">
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Fun Stuff</title>
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <!-- Place favicon.ico in the root directory -->
+    <!-- build:css styles/vendor.css -->
+    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css" type="text/css" />
+    <!-- endbuild -->
+    <!-- build:css styles/main.css -->
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild -->
+    <!-- build:js scripts/modernizr.js -->
+    <script src="scripts/modernizr.js"></script>
+    <!-- endbuild -->
+  </head>
+  <body>
+    <!--[if IE]>
+      <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <audio controls id="bgmusic" autoplay>
+      <source src="./marioSound.mp3" type="audio/mpeg">
+    </audio>
+
+    <audio controls id="jumpmusic" hidden>
+      <source src="./mariojump.mp3" type="audio/mpeg">
+    </audio>
+
+    <audio controls id="diemusic" hidden>
+      <source src="./mariodie.wav" type="audio/wav">
+    </audio>
+
+    <div id="background">
+      <img src="./images/mariobackground.png" alt="super mario scene" >
+      <div id="clouds">
+        <img id="cloud_1" src="./images/cloud_1.png" alt="cloud 1">
+        <img id="cloud_2" src="./images/cloud_2.png" alt="cloud 2">
+        <img id="cloud_3" src="./images/cloud_3.png" alt="cloud 3">
+      </div>
+      <div id="person">
+        <img src="./images/marioFire.png" alt="mario" height="73" width="46">
+      </div>
+      <div>
+        <img id="turtle" src="./images/turtle.png">
+      </div>
+      <div id="buttons">
+        <div id="leftright">
+          <button id="buttonleft" type="button" class="btn btn-primary" > ← (left arrow) </button>
+          <button id="buttonright" type="button" class="btn btn-primary"> → (right arrow)</button>
+        </div>
+        <div id="jump">
+          <button id="buttonjump" type="button" class="btn btn-primary"> ↑ (up arrow) </button>
+        </div>
+      </div>
+    </div>
+
+    
+
+    <div id="outofbounds" class="modal" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">GO BACK!!!</h5>
+            <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button> -->
+          </div>
+          <div class="modal-body">
+            <p>Please do not exceed the boundaries of the map</p>
+            <p>Thanks for your cooperation</p>
+          </div>
+          <div class="modal-footer">
+             <button id="closebutton" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+             <!-- <button id="okbutton" type="button" class="btn btn-primary">OK</button> -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="gameover" class="modal fade" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel">GAME OVER</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            You have touched the turtle.
+            Game over.
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Understood</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="inputnamefirst" class="modal fade" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel">Please enter your name</h5>
+            <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button> -->
+          </div>
+          <div class="modal-body" style="height: 64px;">
+            <div id="nameinput" class="input-group mb-3">
+              <input type="text" class="form-control" placeholder="Player Name" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+              <div class="input-group-append">
+                <button class="btn btn-primary" type="button" id="namebutton" data-dismiss="modal">Confirm</button>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="blank" ></div>
+
+    <div id="scores">
+      <h2>
+        SCORE
+      </h2>
+      <h3 id="scorenumber">
+        0
+      </h3>
+      <p></p><p>___________________________________________</p>
+      <h3>
+        High Scores
+      </h3>
+        <ul class="list-group">
+          <li id="firstplace" class="list-group-item active">0</li>
+          <li id="secondplace" class="list-group-item">0</li>
+          <li id="thirdplace" class="list-group-item">0</li>
+        </ul>
+    </div>
+    
+
+    <div id="footer">
+      <p>
+        ______________________________________________________
+      </p>
+      <p>
+        Created by Thomas Li
+      </p>
+      <p>
+        Created Dec 23, 2019 || Last Modified Dec 25, 2019
+      </p>
+    </div>
+
+    <!-- build:js scripts/vendor.js -->
+    <script type="text/javascript" src="/node_modules/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- endbuild -->
+    <!-- build:js scripts/main.js -->
+    <script src="scripts/main.js"></script>
+    <!-- endbuild -->
+
+  </body>
+</html>
