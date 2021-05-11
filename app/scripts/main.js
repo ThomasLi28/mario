@@ -14,7 +14,7 @@ var pleft = 100, ptop = 513;
 var first, second, third;
 var firstname, secondname, thirdname;
  
-$.get('http://10.10.10.143:9999/api/users', function(data){
+$.get('http://localhost:9999/api/users', function(data){
     for (var i = 0; i < data.length; i++)
     {
         if (data[i].rank == "1"){
